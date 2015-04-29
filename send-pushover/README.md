@@ -10,7 +10,7 @@ The script uses the Python requests module
 The script takes three parameters:
 
 | Parameter | Value |
-| :-: | - |
+| :---: | --- |
 | -a | Pushover Application ID |
 | -u | The users device ID |
 | -m | the message, you can also set the message by piping data to the script |

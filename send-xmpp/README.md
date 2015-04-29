@@ -10,7 +10,7 @@ The script uses the Python XMPP module, which I installed from the debian reposi
 The script takes four parameters:
 
 | Parameter | Value |
-| :-: | - |
+| :---: | --- |
 | -c | contact to send the message to |
 | -u | the user to send the message from |
 | -p | the password for the user |
