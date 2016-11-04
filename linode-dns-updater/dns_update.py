@@ -19,30 +19,30 @@ def get_domain_ip():
 
 def update_dns_record(new_value):
     try:
-        data = {"api_key": API_KEY, "action": "domainList"}
+        data = {"api_key": API_KEY, "api_action": "domain.list"}
         resp = requests.post(API_URL, data=data).json()
         domain = [item for item in resp["DATA"]
                   if item["DOMAIN"] == DNS_DOMAIN][0]
 
         data = {"api_key": API_KEY,
-                "action": "domainResourceList",
+                "api_action": "domain.resource.list",
                 "DomainID": str(domain["DOMAINID"])}
         resp = requests.post(API_URL, data=data).json()
         resource = [item for item in resp["DATA"]
                     if item["NAME"] == DNS_RECORD][0]
 
         data = {"api_key": API_KEY,
-                "action": "domainResourceSave",
+                "api_action": "domain.resource.update",
                 "DomainID": str(domain["DOMAINID"]),
                 "ResourceID": str(resource["RESOURCEID"]),
                 "Name": DNS_RECORD,
                 "Type": resource["TYPE"],
                 "Target": new_value}
         resp = requests.post(API_URL, data=data).json()
-        if len(resp["DATA"]["ERRORARRAY"]) == 0:
+        if len(resp["ERRORARRAY"]) == 0:
             return True
         else:
-            print(resp["DATA"]["ERRORARRAY"])
+            print(resp["ERRORARRAY"])
             return False
     except Exception as ex:
         print(str(ex))
